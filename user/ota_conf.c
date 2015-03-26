@@ -39,6 +39,7 @@ void recvcb(void *arg,char *data,unsigned short len) {
     os_strcpy(newconfig.password,pw);
   }
   os_printf("ssid: \"%s\"\npw: \"%s\"\n",newconfig.ssid,newconfig.password);
+  newconfig.programmed=0;
   spi_flash_erase_sector(0x3D);
   spi_flash_write(0x3D000,(uint32 *)&newconfig,sizeof(newconfig));
   os_delay_us(100000);
