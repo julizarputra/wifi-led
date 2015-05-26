@@ -1,6 +1,6 @@
 #include "ws2812.h"
 #include "ets_sys.h"
-#include "mystuff.h"
+//#include "mystuff.h"
 #include "osapi.h"
 #include "espconn.h"
 #include "mem.h"
