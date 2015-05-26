@@ -1,3 +1,7 @@
+#include "color.h"
+#define MIN(x,y,z) x<y?(x<z?x:z):(y<z?y:z)
+#define MAX(x,y,z) x>y?(x>z?x:z):(y>z?y:z)
+
 void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
 {
   float min, max, delta;
@@ -42,7 +46,7 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
   }
 
   h /= 60;      // sector 0 to 5
-  i = floor( h );
+  i = (int)h;
   f = h - i;      // factorial part of h
   p = v * ( 1 - s );
   q = v * ( 1 - s * f );
@@ -83,6 +87,10 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
 
 }
 
-void set_hsv(rgb *strip,int index,float h,float s,float v) {
-
+void set_hsv(led *strip,int index,float h,float s,float v) {
+  float r,g,b;
+  HSVtoRGB(&r,&g,&b,h,s,v);
+  strip[index].r=(char)(r*255);
+  strip[index].g=(char)(g*255);
+  strip[index].b=(char)(b*255);
 }
