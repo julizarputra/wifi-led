@@ -75,13 +75,14 @@ void ota_conf_init() {
   wifi_softap_set_config(&ap_conf);
   otaConn.type=ESPCONN_TCP;
   otaConn.state=ESPCONN_NONE;
-  otaTcp.local_port=1324;
+  otaTcp.local_port=1337;
   otaConn.proto.tcp=&otaTcp;
   if(wifi_softap_dhcps_start()) {
     os_printf("dhcp success!\n");
   } else {
     os_printf("dhcp failure!\n");
   }
+  udp_init();
 	espconn_regist_connectcb(&otaConn, connectcb);
 	espconn_accept(&otaConn);
 }

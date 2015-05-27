@@ -14,27 +14,28 @@
 
 void SEND_WS_0()
 {
-	uint8_t time = 8;
-	WRITE_PERI_REG( PERIPHS_GPIO_BASEADDR + GPIO_ID_PIN(WSGPIO), 1 );
-	WRITE_PERI_REG( PERIPHS_GPIO_BASEADDR + GPIO_ID_PIN(WSGPIO), 1 );
-	while(time--)
-	{
-		WRITE_PERI_REG( PERIPHS_GPIO_BASEADDR + GPIO_ID_PIN(WSGPIO), 0 );
-	}
-
+	uint8_t i;
+	i=4;
+	while(i--) {
+	  GPIO_REG_WRITE(GPIO_OUT_W1TS_ADDRESS, 1);
+  }
+  i=9;
+  while (i--) {
+    GPIO_REG_WRITE(GPIO_OUT_W1TC_ADDRESS, 1);
+  }
 }
 
 void SEND_WS_1()
 {
-	uint8_t time = 9;
-	while(time--)
-	{
-		WRITE_PERI_REG( PERIPHS_GPIO_BASEADDR + GPIO_ID_PIN(WSGPIO), 1 );
+	uint8_t i;
+	i=8;
+	while(i--) {
+		GPIO_REG_WRITE(GPIO_OUT_W1TS_ADDRESS, 1);
 	}
-	time = 3;
-	while(time--)
+	i=6;
+	while(i--)
 	{
-		WRITE_PERI_REG( PERIPHS_GPIO_BASEADDR + GPIO_ID_PIN(WSGPIO), 0 );
+		GPIO_REG_WRITE(GPIO_OUT_W1TC_ADDRESS, 1);
 	}
 
 }
